@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIDAS Dashboard</title>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#6C5CE7">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ===== GLOBAL ===== */
+body{
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #6C5CE7, #A29BFE, #74B9FF);
+  min-height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* ===== APP CONTAINER ===== */
+.container{
+  width: 100%;
+  max-width: 100%;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* ===== HEADER ===== */
+.header{
+  padding: 20px;
+  color: white;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  font-weight:600;
+}
+
+/* ===== PROFILE ===== */
+.profile{
+  width: 80px;
+  height: 80px;
+  margin: -40px auto 10px;
+  background: linear-gradient(135deg,#9D7BC9,#7B56A3);
+  border-radius: 50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* ===== CONTENT ===== */
+.content{
+  padding: 20px;
+}
+
+/* ===== STATS ===== */
+.stats { 
+  display: flex; 
+  gap: 12px; 
+  flex-wrap: wrap; 
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 100px;
+  background: rgba(255,255,255,0.95);
+  padding: 16px;
+  border-radius: 15px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-icon {
+  font-size: 20px;
+  color: #7B56A3;
+}
+
+.stat-number {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* ===== INPUT GROUP ===== */
+.input-group{
+  display:flex;
+  align-items:center;
+  background: rgba(255,255,255,0.95);
+  border-radius: 15px;
+  padding: 0 15px;
+  border: 2px solid transparent;
+  transition: 0.3s;
+  margin-top:20px;
+}
+
+.input-group i{
+  color:#7B56A3;
+}
+
+.input-group input{
+  width:100%;
+  padding:15px;
+  border:none;
+  outline:none;
+  font-size:16px;
+  background:transparent;
+}
+
+.input-group:focus-within{
+  border:2px solid #7B56A3;
+  box-shadow: 0 0 10px rgba(123,86,163,0.4);
+}
+
+/* ===== BUTTON ===== */
+.scan-btn{
+  width:100%;
+  margin-top:12px;
+  padding:15px;
+  border:none;
+  border-radius:15px;
+  background: linear-gradient(135deg,#9D7BC9,#7B56A3);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.scan-btn:hover{
+  transform: translateY(-3px);
+}
+
+/* ===== RECENT ===== */
+.recent-title{
+  margin-top:20px;
+  color:white;
+}
+
+.recent-item{
+  background: rgba(255,255,255,0.2);
+  padding:10px;
+  border-radius:10px;
+  color:white;
+  margin-top:8px;
+}
+
+/* ===== NAV ===== */
+.bottom-nav {
+  position: fixed;      /* Stick it */
+  bottom: 0;            /* At the bottom */
+  left: 0;              /* Full width */
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px;
+  background: rgba(0,0,0,0.2);
+  z-index: 1000;        /* On top of other elements */
+}
+
+.nav-item{
+  text-align:center;
+  color:white;
+  font-size:12px;
+  opacity:0.7;
+  text-decoration:none;
+}
+
+.nav-item.active{
+  opacity:1;
+  font-weight:bold;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:500px){
+  .container{
+    width:100%;
+    height:100vh;
+    border-radius:0;
+  }
+}
+</style>
+</head>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(() => console.log('✅ Service Worker Registered'))
+      .catch(err => console.log('❌ SW Error:', err));
+  });
+}
+</script>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div><i class="fas fa-chart-line"></i> Dashboard</div>
+    <div><i class="fas fa-bell"></i></div>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="profile">
+    <i class="fas fa-user"></i>
+  </div>
+
+  <div class="content">
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat-card">
+        <i class="fas fa-users stat-icon"></i>
+        <div class="stat-number">124</div>
+        <div>Total</div>
+      </div>
+
+      <div class="stat-card">
+        <i class="fas fa-check-circle stat-icon"></i>
+        <div class="stat-number">42</div>
+        <div>Present</div>
+      </div>
+
+      <div class="stat-card">
+        <i class="fas fa-clock stat-icon"></i>
+        <div class="stat-number" id="time"></div>
+        <div>Time</div>
+      </div>
+    </div>
+
+    <!-- INPUT -->
+    <div class="input-group">
+      <i class="fas fa-id-card"></i>
+      <input type="text" id="scanInput" placeholder="Scan RFID / Student ID">
+    </div>
+
+    <button class="scan-btn" onclick="scanStudent()">
+      <i class="fas fa-fingerprint"></i> Scan Now
+    </button>
+
+    <!-- RECENT -->
+    <h3 class="recent-title">Recent Scans</h3>
+
+    <div id="recentList">
+      <div class="recent-item">✅ John Doe - STU001</div>
+      <div class="recent-item">✅ Jane Smith - STU002</div>
+    </div>
+
+  </div>
+
+  <!-- NAV -->
+  <div class="bottom-nav">
+    <a href="dashboard.html" class="nav-item active">
+      <i class="fas fa-chart-line"></i><br>Dashboard
+    </a>
+    <a href="students.html" class="nav-item">
+      <i class="fas fa-users"></i><br>Students
+    </a>
+  </div>
+
+</div>
+
+<script>
+/* CLOCK */
+function updateClock(){
+  document.getElementById("time").innerText =
+    new Date().toLocaleTimeString();
+}
+setInterval(updateClock,1000);
+updateClock();
+
+/* SCAN FUNCTION */
+function scanStudent(){
+  const input = document.getElementById("scanInput");
+  const value = input.value.trim();
+
+  if(value === ""){
+    alert("Please scan or enter Student ID");
+    return;
+  }
+
+  const list = document.getElementById("recentList");
+
+  const newItem = document.createElement("div");
+  newItem.className = "recent-item";
+  newItem.innerHTML = "✅ New Scan - " + value;
+
+  list.prepend(newItem);
+
+  input.value = "";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIDAS - Smart Attendance</title>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#6C5CE7">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ===== GLOBAL ===== */
+html, body {
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  font-family:'Segoe UI',sans-serif;
+  background: linear-gradient(135deg,#6C5CE7,#A29BFE,#74B9FF);
+  overflow-x:hidden;
+}
+
+body{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  min-height:100vh;
+}
+
+/* Glow background */
+body::before, body::after{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  filter:blur(120px);
+  z-index:-1;
+}
+body::before{ background:#ff6b8b; top:10%; left:-150px; }
+body::after{ background:#7b56a3; bottom:10%; right:-150px; }
+
+/* ===== CONTAINER ===== */
+.container{
+  width:100%;
+  max-width:480px;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+  padding:20px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(25px);
+  border-radius:30px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.2);
+  border:1px solid rgba(255,255,255,0.2);
+  overflow:hidden;
+  position:relative;
+}
+
+/* ===== HEADER ===== */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  width:100%;
+  padding:20px 10px 0 10px;
+  color:white;
+  font-weight:600;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:24px;
+  font-weight:bold;
+}
+
+.logo-icon{
+  width:45px;
+  height:45px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#9D7BC9,#FF6B8B);
+  box-shadow:0 0 15px rgba(255,107,139,0.6);
+}
+
+/* ===== HERO ===== */
+.hero{
+  text-align:center;
+  padding:30px 20px;
+  flex-grow:1;
+}
+
+.hero .badge{
+  display:inline-block;
+  padding:6px 18px;
+  border-radius:50px;
+  background: rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.2);
+  margin-bottom:15px;
+  font-weight:600;
+}
+
+.hero h1{
+  font-size:60px;
+  font-weight:900;
+  background:linear-gradient(90deg,#9D7BC9,#FF6B8B);
+  -webkit-background-clip:text;
+  color:transparent;
+  margin:0;
+}
+
+.hero h2{
+  font-size:28px;
+  margin:10px 0;
+}
+
+.hero p{
+  margin-top:10px;
+  font-size:16px;
+  opacity:0.85;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.actions{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:12px 20px;
+  border-radius:15px;
+  font-size:14px;
+  font-weight:bold;
+  text-decoration:none;
+  cursor:pointer;
+  transition:0.3s;
+  display:inline-block;
+  text-align:center;
+}
+
+.btn-login{
+  border:1px solid rgba(255,255,255,0.3);
+  color:white;
+}
+
+.btn-login:hover{
+  background:rgba(255,255,255,0.1);
+}
+
+.btn-start{
+  background:linear-gradient(135deg,#9D7BC9,#7B56A3);
+  color:white;
+  box-shadow:0 10px 25px rgba(123,86,163,0.5);
+}
+
+.btn-start:hover{
+  transform:translateY(-3px);
+}
+
+/* ===== FEATURES ===== */
+.features{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+  padding:30px 20px 50px;
+}
+
+.card{
+  width:100px;
+  padding:15px;
+  border-radius:20px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter:blur(10px);
+  text-align:center;
+  transition:0.3s;
+}
+
+.card p{
+  margin-top:6px;
+  font-size:14px;
+}
+
+.card:hover{
+  transform:translateY(-5px) scale(1.05);
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:500px){
+  .container{
+    max-width:100%;
+    border-radius:0;
+    padding:15px;
+  }
+  .hero h1{
+    font-size:48px;
+  }
+  .hero h2{
+    font-size:22px;
+  }
+  .hero p{
+    font-size:14px;
+  }
+  .actions{
+    flex-direction:column;
+    gap:10px;
+  }
+  .btn{
+    width:100%;
+  }
+  .features{
+    gap:10px;
+  }
+  .card{
+    width:80px;
+    padding:12px;
+  }
+}
+</style>
+</head>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(() => console.log('✅ Service Worker Registered'))
+      .catch(err => console.log('❌ SW Error:', err));
+  });
+}
+</script>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">
+      <div class="logo-icon">🎓</div>DIDAS
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="badge">🚀 Real-time RFID Attendance</div>
+    <h1>DIDAS</h1>
+    <h2>Smart Attendance System</h2>
+    <p>Fast • Secure • Automated</p>
+
+    <div class="actions">
+      <a href="/new-login.html" class="btn btn-login">Login</a>
+      <a href="/new-register.html" class="btn btn-start">Get Started</a>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="features">
+    <div class="card">⏰<p>Easy Tracking</p></div>
+    <div class="card">📊<p>Auto Records</p></div>
+    <div class="card">🔒<p>Secure</p></div>
+    <div class="card">📱<p>Access Anywhere</p></div>
+  </div>
+
+</div>
+</body>
+</html>

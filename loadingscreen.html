@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading DIDAS...</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<meta name="theme-color" content="#6C5CE7">
+
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* BODY */
+body{
+  height:100vh;
+  background: linear-gradient(135deg,#6C5CE7,#A29BFE,#74B9FF);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  font-family:'Segoe UI',sans-serif;
+  overflow:hidden;
+  position:relative;
+  transition: opacity 0.6s ease;
+}
+
+/* GLOW BACKGROUND (LIKE YOUR APP) */
+body::before, body::after{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  filter:blur(120px);
+  z-index:0;
+}
+
+body::before{
+  background:#9D7BC9;
+  top:10%;
+  left:-100px;
+}
+
+body::after{
+  background:#74B9FF;
+  bottom:10%;
+  right:-100px;
+}
+
+/* LOGO */
+.logo{
+  font-size:clamp(3rem,10vw,5rem);
+  font-weight:900;
+  background:linear-gradient(135deg,#9D7BC9,#FF6B8B);
+  -webkit-background-clip:text;
+  color:transparent;
+  margin-bottom:10px;
+  animation: floatLogo 3s ease-in-out infinite;
+  z-index:2;
+}
+
+/* SUBTITLE */
+.subtitle{
+  color:white;
+  opacity:0.9;
+  margin-bottom:30px;
+  z-index:2;
+}
+
+/* SPINNER */
+.spinner{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  border:4px solid rgba(255,255,255,0.2);
+  border-top:4px solid white;
+  animation: spin 1s linear infinite;
+  margin-bottom:30px;
+  z-index:2;
+}
+
+/* PROGRESS */
+.progress{
+  width:240px;
+  height:6px;
+  background:rgba(255,255,255,0.2);
+  border-radius:10px;
+  overflow:hidden;
+  z-index:2;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#ffffff,#dfe6ff);
+  animation: load 2.5s forwards;
+}
+
+/* TEXT */
+.text{
+  margin-top:15px;
+  font-size:14px;
+  opacity:0.85;
+  color:white;
+  z-index:2;
+}
+
+/* ANIMATIONS */
+@keyframes spin{
+  to{ transform:rotate(360deg); }
+}
+
+@keyframes load{
+  to{ width:100%; }
+}
+
+@keyframes floatLogo{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-10px); }
+}
+
+/* FADE OUT */
+.fade-out{
+  opacity:0;
+}
+
+/* MOBILE */
+@media(max-width:480px){
+  .progress{ width:180px; }
+  .spinner{ width:60px; height:60px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="logo">DIDAS</div>
+<div class="subtitle">Loading System...</div>
+
+<div class="spinner"></div>
+
+<div class="progress">
+  <div class="progress-bar"></div>
+</div>
+
+<div class="text">Preparing Smart Attendance...</div>
+
+<script>
+// SERVICE WORKER
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(() => console.log('✅ Service Worker Registered'))
+      .catch(err => console.log('❌ SW Error:', err));
+  });
+}
+
+// REDIRECT AFTER LOAD
+setTimeout(() => {
+  document.body.classList.add("fade-out");
+  setTimeout(() => {
+    window.location.href = "/homepage.html";
+  }, 600);
+}, 2500);
+</script>
+
+</body>
+</html>

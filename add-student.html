@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIDAS - Add Student</title>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#6C5CE7">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ===== GLOBAL ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family:'Segoe UI', sans-serif;
+  background: linear-gradient(135deg,#6C5CE7,#A29BFE,#74B9FF);
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: hidden;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(20px);
+  border-radius: 0;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 50px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  padding: 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* ===== PROFILE ===== */
+.profile {
+  width: 80px;
+  height: 80px;
+  margin: -40px auto 10px;
+  background: linear-gradient(135deg,#9D7BC9,#7B56A3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
+
+/* ===== CONTENT ===== */
+.content {
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* ===== INPUT GROUP ===== */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+.input-group label {
+  color: white;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.input-group input,
+.input-group select {
+  padding: 14px;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.95);
+  font-size: 14px;
+}
+
+/* ===== SCHEDULE ===== */
+.schedule-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.schedule-group label {
+  font-weight: normal;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+}
+
+/* ===== ADD BUTTON ===== */
+.add-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 15px;
+  background: linear-gradient(135deg,#9D7BC9,#7B56A3);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+.add-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* ===== SCROLLBAR ===== */
+.content::-webkit-scrollbar {
+  width: 8px;
+}
+.content::-webkit-scrollbar-thumb {
+  background: rgba(123,86,163,0.5);
+  border-radius: 4px;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:500px){
+  .container {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+  }
+}
+</style>
+</head>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(() => console.log('✅ Service Worker Registered'))
+      .catch(err => console.log('❌ SW Error:', err));
+  });
+}
+</script>
+<body>
+<div class="container">
+  <!-- HEADER -->
+  <div class="header">
+    <div><i class="fas fa-user-plus"></i> Add Student</div>
+    <div onclick="history.back()" style="cursor:pointer;">
+      <i class="fas fa-arrow-left"></i>
+    </div>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="profile">
+    <i class="fas fa-user"></i>
+  </div>
+
+  <div class="content">
+    <form id="addStudentForm">
+      <div class="input-group">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" placeholder="John Doe" required>
+      </div>
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="john@example.com" required>
+      </div>
+      <div class="input-group">
+        <label for="studentId">Student ID</label>
+        <input type="text" id="studentId" placeholder="STU001" required>
+      </div>
+      <div class="input-group">
+        <label for="rfid">RFID Card</label>
+        <input type="text" id="rfid" placeholder="RFID123456" required>
+      </div>
+      <div class="input-group">
+        <label>Schedule (Days)</label>
+        <div class="schedule-group">
+          <label><input type="checkbox" value="M"> M</label>
+          <label><input type="checkbox" value="T"> T</label>
+          <label><input type="checkbox" value="W"> W</label>
+          <label><input type="checkbox" value="Th"> Th</label>
+          <label><input type="checkbox" value="F"> F</label>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="course">Course</label>
+        <input type="text" id="course" placeholder="BS Computer Science" required>
+      </div>
+      <div class="input-group">
+        <label for="year">Year</label>
+        <select id="year" required>
+          <option value="">Select Year</option>
+          <option value="1">1st Year</option>
+          <option value="2">2nd Year</option>
+          <option value="3">3rd Year</option>
+          <option value="4">4th Year</option>
+        </select>
+      </div>
+      <button type="submit" class="add-btn"><i class="fas fa-plus"></i> Add Student</button>
+    </form>
+  </div>
+</div>
+
+<script>
+document.getElementById("addStudentForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const fullname = document.getElementById("fullname").value;
+  const email = document.getElementById("email").value;
+  const studentId = document.getElementById("studentId").value;
+  const rfid = document.getElementById("rfid").value;
+  const course = document.getElementById("course").value;
+  const year = document.getElementById("year").value;
+
+  const scheduleCheckboxes = document.querySelectorAll(".schedule-group input:checked");
+  const schedule = Array.from(scheduleCheckboxes).map(cb => cb.value).join(", ");
+
+  const newStudent = {
+    name: fullname,
+    email: email,
+    id: studentId,
+    rfid: rfid,
+    course: course,
+    year: year,
+    schedule: schedule,
+    status: "Present"
+  };
+
+  // Save to localStorage
+  let students = JSON.parse(localStorage.getItem("students")) || [];
+  students.push(newStudent);
+  localStorage.setItem("students", JSON.stringify(students));
+
+  // Redirect to students page
+  window.location.href = "students.html";
+});
+</script>
+</body>
+</html>
