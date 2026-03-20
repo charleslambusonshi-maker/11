@@ -1,0 +1,17 @@
+/* Shared app styles for DIDAS PWA */
+*{ box-sizing:border-box; }
+html, body { margin:0; padding:0; width:100%; min-height:100%; font-family:'Segoe UI',sans-serif; background: linear-gradient(135deg,#6C5CE7,#A29BFE,#74B9FF); color:#fff; overflow-x:hidden; }
+body { display:flex; justify-content:center; align-items:flex-start; }
+.container{ width:min(100%,920px); max-width:100%; min-height:100vh; padding:16px; margin:0 auto; }
+.default-panel { width:100%; background: rgba(255,255,255,0.12); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border:1px solid rgba(255,255,255,0.2); border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,0.2); }
+.btn{ display:inline-block; font-weight:700; border-radius:15px; padding:12px 20px; text-align:center; text-decoration:none; cursor:pointer; transition: transform .2s ease, box-shadow .2s ease; }
+.btn:hover{ transform: translateY(-2px); }
+.btn-login{ border:1px solid rgba(255,255,255,0.3); color:#fff; }
+.btn-start{ background: linear-gradient(135deg,#9D7BC9,#7B56A3); color:#fff; }
+.window-100vh{ min-height:100vh; }
+.input-field{ width:100%; border-radius:12px; border:1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.12); color:#fff; padding:14px 16px; }
+.popup-msg{ position:fixed; bottom:20px; left:50%; transform:translateX(-50%) translateY(120%); padding:14px 20px; border-radius:18px; font-weight:700; z-index:10001; animation: popupShow 0.35s forwards; }
+.popup-success{ background: linear-gradient(135deg,#4CAF50,#45a049); }
+.popup-error{ background: linear-gradient(135deg,#f44336,#d32f2f); }
+@keyframes popupShow{ to{ transform:translateX(-50%) translateY(0); } }
+@media(max-width:768px){ .container{ padding:12px; } .btn{ width:100%; max-width:100%; } }
