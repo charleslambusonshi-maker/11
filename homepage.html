@@ -7,244 +7,219 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/icon-192.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="/styles.css">
 
 <style>
 /* ===== GLOBAL ===== */
 html, body {
-  margin:0;
-  padding:0;
-  width:100%;
-  height:100%;
-  font-family:'Segoe UI',sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(135deg,#6C5CE7,#A29BFE,#74B9FF);
-  overflow-x:hidden;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-body{
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  min-height:100vh;
+.container {
+  width: 100%;
+  max-width: 720px;
+  padding: 15px;
+  box-sizing: border-box;
 }
-
-
 
 /* ===== HEADER ===== */
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  width:100%;
-  padding:20px 10px 0 10px;
-  color:white;
-  font-weight:600;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  color: white;
+  font-weight: 600;
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-size:24px;
-  font-weight:bold;
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
-.logo-icon{
-  width:45px;
-  height:45px;
-  border-radius:12px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(135deg,#9D7BC9,#FF6B8B);
-  box-shadow:0 0 15px rgba(255,107,139,0.6);
+.logo-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg,#9D7BC9,#FF6B8B);
+  box-shadow: 0 0 15px rgba(255,107,139,0.6);
+  font-size: 24px;
 }
 
 /* ===== HERO ===== */
-.hero{
-  width:100%;
-  text-align:center;
-  padding:24px 16px;
-  flex:1 1 auto;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+.hero {
+  text-align: center;
+  padding: 20px 10px;
 }
 
-.hero .badge{
-  display:inline-block;
-  padding:6px 18px;
-  border-radius:50px;
-  background: rgba(255,255,255,0.1);
-  border:1px solid rgba(255,255,255,0.2);
-  margin-bottom:15px;
-  font-weight:600;
+.hero .badge {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  margin-bottom: 15px;
+  font-weight: 600;
 }
 
-.hero h1{
-  font-size:60px;
-  font-weight:900;
-  background:linear-gradient(90deg,#9D7BC9,#FF6B8B);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  margin:0;
+.hero h1 {
+  font-size: 4rem;
+  font-weight: 900;
+  background: linear-gradient(90deg,#9D7BC9,#FF6B8B);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0;
 }
 
-.hero h2{
-  font-size:28px;
-  margin:10px 0;
+.hero h2 {
+  font-size: 1.8rem;
+  margin: 10px 0;
+  color: white;
 }
 
-.hero p{
-  margin-top:10px;
-  font-size:16px;
-  opacity:0.85;
+.hero p {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.9);
 }
 
 /* ===== ACTION BUTTONS ===== */
-.actions{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:12px;
-  margin-top:20px;
-  flex-wrap:wrap;
-  width:100%;
-}
-.btn{min-width:130px;}
-
-.btn{
-  padding:12px 20px;
-  border-radius:15px;
-  font-size:14px;
-  font-weight:bold;
-  text-decoration:none;
-  cursor:pointer;
-  transition:0.3s;
-  display:inline-block;
-  text-align:center;
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
 }
 
-.btn-login{
-  border:1px solid rgba(255,255,255,0.3);
-  color:white;
+.btn {
+  padding: 12px 20px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+  display: inline-block;
+  text-align: center;
+  min-width: 120px;
 }
 
-.btn-login:hover{
-  background:rgba(255,255,255,0.1);
+.btn-login {
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
 }
 
-.btn-start{
-  background:linear-gradient(135deg,#9D7BC9,#7B56A3);
-  color:white;
-  box-shadow:0 10px 25px rgba(123,86,163,0.5);
+.btn-login:hover {
+  background: rgba(255,255,255,0.1);
 }
 
-.btn-start:hover{
-  transform:translateY(-3px);
+.btn-start {
+  background: linear-gradient(135deg,#9D7BC9,#7B56A3);
+  color: white;
+  box-shadow: 0 10px 20px rgba(123,86,163,0.4);
 }
-.hidden{display:none !important;}
-.mt-12{margin-top:12px !important;}
+
+.btn-start:hover {
+  transform: translateY(-3px);
+}
 
 /* ===== FEATURES ===== */
-.features{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-  gap:12px;
-  padding:20px 12px 30px;
-  width:100%;
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
+  gap: 15px;
+  padding: 20px 0;
+}
+
+.card {
+  padding: 15px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  transition: 0.3s;
+  color: white;
+}
+
+.card p {
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
 /* ===== ABOUT ===== */
 .about {
-  width:100%;
-  max-width:720px;
-  margin: 0 auto 25px;
   background: rgba(255,255,255,0.18);
-  border:1px solid rgba(255,255,255,0.3);
-  border-radius:18px;
-  -webkit-backdrop-filter:blur(10px);
-  backdrop-filter:blur(10px);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
   padding: 16px;
-  color: white;
+  margin: 25px 0;
   text-align: center;
+  color: white;
 }
+
 .about h3 {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   font-size: 1.25rem;
 }
+
 .about p {
   margin: 0;
-  opacity: 0.92;
+  opacity: 0.9;
   font-size: 0.95rem;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
-.card{
-  width:100px;
-  padding:15px;
-  border-radius:20px;
-  background: rgba(255,255,255,0.1);
-  -webkit-backdrop-filter:blur(10px);
-  backdrop-filter:blur(10px);
-  text-align:center;
-  transition:0.3s;
-}
-
-.card p{
-  margin-top:6px;
-  font-size:14px;
-}
-
-.card:hover{
-  transform:translateY(-5px) scale(1.05);
-  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+.mt-12 {
+  margin-top: 12px !important;
 }
 
 /* ===== RESPONSIVE ===== */
-@media(max-width:500px){
-  .container{
-    max-width:100%;
-    border-radius:0;
-    padding:15px;
+@media (max-width: 500px) {
+  .hero h1 {
+    font-size: 3rem;
   }
-  .hero h1{
-    font-size:48px;
+  .hero h2 {
+    font-size: 1.4rem;
   }
-  .hero h2{
-    font-size:22px;
+  .hero p {
+    font-size: 0.9rem;
   }
-  .hero p{
-    font-size:14px;
+  .btn {
+    width: 100%;
   }
-  .actions{
-    flex-direction:column;
-    gap:10px;
+  .features {
+    gap: 10px;
   }
-  .btn{
-    width:100%;
-  }
-  .features{
-    gap:10px;
-  }
-  .card{
-    width:80px;
-    padding:12px;
+  .card {
+    padding: 12px;
   }
 }
 </style>
+
 </head>
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(() => console.log('✅ Service Worker Registered'))
-      .catch(err => console.log('❌ SW Error:', err));
-  });
-}
-</script>
 <body>
 <div class="container">
 
@@ -263,7 +238,6 @@ if ('serviceWorker' in navigator) {
     <p>Fast • Secure • Automated</p>
 
     <div class="actions">
-      <a id="installAppBtn" onclick="installApp()" class="btn btn-start hidden">Install App</a>
       <a href="/new-login.html" class="btn btn-login">Login</a>
       <a href="/new-register.html" class="btn btn-start">Get Started</a>
     </div>
@@ -281,7 +255,7 @@ if ('serviceWorker' in navigator) {
   <div class="about">
     <h3>About DIDAS</h3>
     <p>DIDAS (Digital ID Attendance System) is a fast, secure, mobile-friendly attendance solution for schools and organizations.
-    Track student presence with RFID, generate reports, and manage attendance from one responsive dashboard.</p>
+      Track student presence with RFID, generate reports, and manage attendance from one responsive dashboard.</p>
     <a href="about.html" class="btn btn-start mt-12">Learn More</a>
   </div>
 </div>
