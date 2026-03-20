@@ -20,7 +20,6 @@ html, body {
   overflow-x: hidden;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
 }
 
 .container {
@@ -28,13 +27,17 @@ html, body {
   max-width: 720px;
   padding: 15px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ===== HEADER ===== */
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  width: 100%;
   padding: 20px 0;
   color: white;
   font-weight: 600;
@@ -106,12 +109,13 @@ html, body {
   gap: 12px;
   margin-top: 20px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .btn {
   padding: 12px 20px;
   border-radius: 15px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: bold;
   text-decoration: none;
   cursor: pointer;
@@ -133,7 +137,6 @@ html, body {
 .btn-start {
   background: linear-gradient(135deg,#9D7BC9,#7B56A3);
   color: white;
-  min-width: 80px;
   box-shadow: 0 10px 20px rgba(123,86,163,0.4);
 }
 
@@ -147,6 +150,7 @@ html, body {
   grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
   gap: 15px;
   padding: 20px 0;
+  width: 100%;
 }
 
 .card {
@@ -175,10 +179,11 @@ html, body {
   border: 1px solid rgba(255,255,255,0.25);
   border-radius: 18px;
   backdrop-filter: blur(10px);
-  padding: 16px;
+  padding: 20px;
   margin: 25px 0;
   text-align: center;
   color: white;
+  width: 100%;
 }
 
 .about h3 {
@@ -219,7 +224,6 @@ html, body {
   }
 }
 </style>
-
 </head>
 <body>
 <div class="container">
@@ -259,6 +263,7 @@ html, body {
       Track student presence with RFID, generate reports, and manage attendance from one responsive dashboard.</p>
     <a href="about.html" class="btn btn-start mt-12">Learn More</a>
   </div>
+
 </div>
 </body>
 </html>
